@@ -67,3 +67,6 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+#protect the api
+config.js
