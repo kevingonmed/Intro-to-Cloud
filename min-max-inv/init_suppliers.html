@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firestore Supplier Adder</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        .supplier-entry {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add Cartoon Suppliers to Firestore</h1>
+    <div id="output">Adding suppliers...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+        // TODO: Replace these with your own Firebase config values
+        const firebaseConfig = {
+            apiKey: "AIzaSyC6yVtAUZfhBamr1gZ9L-TMBTgXyrR9yPw",
+            authDomain: "min-max-inventory-kevin.firebaseapp.com",
+            projectId: "min-max-inventory-kevin",
+            storageBucket: "min-max-inventory-kevin.firebasestorage.app",
+            messagingSenderId: "512524847175",
+            appId: "1:512524847175:web:a6fed3c097de224ed00962"
+        };
+
+        // Function to run after the HTML document is loaded
+        window.addEventListener('DOMContentLoaded', async () => {
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            const suppliers = [
+                {
+                    supplier_name: "Acme Rocket Works",
+                    email_address: "sales@acmerocketworks.com",
+                    phone_number: "+1-555-ROCKET"
+                },
+                {
+                    supplier_name: "Toon Town Gadgets",
+                    email_address: "contact@toontowngadgets.com",
+                    phone_number: "+1-555-TOONZ"
+                },
+                {
+                    supplier_name: "Wacky Widget Co.",
+                    email_address: "support@wackywidgetco.com",
+                    phone_number: "+1-555-WACKY"
+                },
+                {
+                    supplier_name: "Looney Supply Depot",
+                    email_address: "info@looneysupplydepot.com",
+                    phone_number: "+1-555-LOONY"
+                },
+                {
+                    supplier_name: "Gizmo & Gadget Emporium",
+                    email_address: "hello@gizmogadgetemporium.com",
+                    phone_number: "+1-555-GIZMO"
+                }
+            ];
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = ""; // Clear initial text
+
+            for (const supplier of suppliers) {
+                try {
+                    const docRef = await addDoc(collection(db, "suppliers"), supplier);
+                    const message = `<div class="supplier-entry">✅ Added "${supplier.supplier_name}" with ID: <code>${docRef.id}</code></div>`;
+                    outputDiv.innerHTML += message;
+                } catch (error) {
+                    const errorMsg = `<div class="supplier-entry">❌ Error adding "${supplier.supplier_name}": ${error.message}</div>`;
+                    outputDiv.innerHTML += errorMsg;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

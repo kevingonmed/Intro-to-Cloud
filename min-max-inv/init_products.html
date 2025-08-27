@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Initialize Products in Firestore</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        .product-entry {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adding Products to Firestore</h1>
+    <div id="output">Adding products...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+        // TODO: Replace with your actual Firebase project configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC6yVtAUZfhBamr1gZ9L-TMBTgXyrR9yPw",
+            authDomain: "min-max-inventory-kevin.firebaseapp.com",
+            projectId: "min-max-inventory-kevin",
+            storageBucket: "min-max-inventory-kevin.firebasestorage.app",
+            messagingSenderId: "512524847175",
+            appId: "1:512524847175:web:a6fed3c097de224ed00962"
+        };
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            const products = [
+                { product_name: "Rocket Red Lipstick", minimum_quantity: 10, quantity: 25, maximum_quantity: 50, supplier_id: "Acme Rocket Works" },
+                { product_name: "Acme Eyebrow Blaster", minimum_quantity: 5, quantity: 12, maximum_quantity: 30, supplier_id: "Acme Rocket Works" },
+                { product_name: "Toon Glow Foundation", minimum_quantity: 15, quantity: 40, maximum_quantity: 80, supplier_id: "Toon Town Gadgets" },
+                { product_name: "Acme Boom Blush", minimum_quantity: 8, quantity: 20, maximum_quantity: 40, supplier_id: "Acme Rocket Works" },
+                { product_name: "Wacky Waterproof Mascara", minimum_quantity: 12, quantity: 30, maximum_quantity: 60, supplier_id: "Wacky Widget Co." },
+                { product_name: "Looney Long-Lasting Lip Gloss", minimum_quantity: 6, quantity: 18, maximum_quantity: 35, supplier_id: "Looney Supply Depot" },
+                { product_name: "Gizmo Glitter Eyeshadow", minimum_quantity: 10, quantity: 28, maximum_quantity: 50, supplier_id: "Gizmo & Gadget Emporium" },
+                { product_name: "Toon Town Setting Spray", minimum_quantity: 7, quantity: 22, maximum_quantity: 45, supplier_id: "Toon Town Gadgets" },
+                { product_name: "Rocket Resilient Concealer", minimum_quantity: 9, quantity: 24, maximum_quantity: 50, supplier_id: "Acme Rocket Works" },
+                { product_name: "Looney Lush Bronzer", minimum_quantity: 5, quantity: 15, maximum_quantity: 30, supplier_id: "Looney Supply Depot" },
+                { product_name: "Wacky Wow Eyeliner", minimum_quantity: 8, quantity: 20, maximum_quantity: 40, supplier_id: "Wacky Widget Co." },
+                { product_name: "Gizmo Glow Highlighter", minimum_quantity: 12, quantity: 35, maximum_quantity: 70, supplier_id: "Gizmo & Gadget Emporium" },
+                { product_name: "Toon Tint Lip Balm", minimum_quantity: 10, quantity: 25, maximum_quantity: 50, supplier_id: "Toon Town Gadgets" },
+                { product_name: "Acme Anvil Face Mask", minimum_quantity: 4, quantity: 10, maximum_quantity: 20, supplier_id: "Acme Rocket Works" },
+                { product_name: "Looney Velvet Powder", minimum_quantity: 6, quantity: 18, maximum_quantity: 35, supplier_id: "Looney Supply Depot" },
+                { product_name: "Wacky Whirl Makeup Remover", minimum_quantity: 7, quantity: 21, maximum_quantity: 40, supplier_id: "Wacky Widget Co." },
+                { product_name: "Gizmo Gel Primer", minimum_quantity: 9, quantity: 27, maximum_quantity: 50, supplier_id: "Gizmo & Gadget Emporium" },
+                { product_name: "Toon Town Shimmer Serum", minimum_quantity: 5, quantity: 14, maximum_quantity: 30, supplier_id: "Toon Town Gadgets" },
+                { product_name: "Acme Boom Brow Gel", minimum_quantity: 6, quantity: 16, maximum_quantity: 32, supplier_id: "Acme Rocket Works" },
+                { product_name: "Looney Luxe Lip Liner", minimum_quantity: 8, quantity: 20, maximum_quantity: 40, supplier_id: "Looney Supply Depot" }
+            ];
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = ""; // Clear initial text
+
+            for (const product of products) {
+                try {
+                    const docRef = await addDoc(collection(db, "products"), product);
+                    const message = `<div class="product-entry">✅ Added "${product.product_name}" with ID: <code>${docRef.id}</code></div>`;
+                    outputDiv.innerHTML += message;
+                } catch (error) {
+                    const errorMsg = `<div class="product-entry">❌ Error adding "${product.product_name}": ${error.message}</div>`;
+                    outputDiv.innerHTML += errorMsg;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(to right, #ff0000, #ffffff);
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #fff;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    background-color: #ffcc00;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #ffaa00;
+}
+
+.card {
+    margin-top: 30px;
+    display: inline-block;
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 15px;
+    border: 5px solid #222;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    border: 4px solid #222;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.types,
+.weaknesses,
+.evolutions {
+    margin-top: 15px;
+}
+
+.type,
+.weakness,
+.evolution {
+    display: inline-block;
+    background: #ccc;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid #333;
+    text-transform: capitalize;
+}
+
+strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #111;
+}
