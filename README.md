@@ -22,11 +22,15 @@ The class focuses on launching **cloud-based web applications** with the help of
 
 ## 📂 Labs & Projects
 Some key projects from this course include:
+Firebase Projects
+- [Min Max inventory](https://min-max-inventory-kevin.web.app/index2.html)  
+- [Pokedex](https://pokedex-w4.web.app/)  
+- [Formula 1 Map Races](https://gonzalez-team-f1.web.app/)  
+- [Project Management](https://gonzalez-week5-database.web.app/projects.html)
 
-- Cloud App Setup – Week 02  
-- AI-Assisted Web Project – Week 05  
-- Team Project: Cloud Solution for Business Need – Week 08  
-- Final Project: Launching a Cloud-Based Web App – Week 12  
+AWS
+- [Amplify](https://github.com/kevingonmed/Intro-to-Cloud/tree/main/kevin-amplify)
+- [Teraform](https://github.com/kevingonmed/Intro-to-Cloud/tree/main/aws-teraform)
 
 ---
 
