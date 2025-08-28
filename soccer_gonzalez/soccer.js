@@ -1,15 +1,8 @@
-const apiKey = '748f4b1e4d9b2a7168de30de2d6cb8aa';
-const apiUrl = 'https://v3.football.api-sports.io';
+const apiUrl = "http://localhost:3000"; //  backend
 
 async function fetchMatches() {
     try {
-        const leagueId = 39; // Premier League (change later if needed)
-        const url = `${apiUrl}/fixtures?league=${leagueId}&next=10`;
-
-        const response = await fetch(url, {
-            headers: { 'x-apisports-key': apiKey }
-        });
-
+        const response = await fetch(`${apiUrl}/matches`);
         const data = await response.json();
         console.log("API data:", data);
 
@@ -59,9 +52,7 @@ function displayMatches(matches) {
 
 async function fetchLineup(fixtureId) {
     try {
-        const response = await fetch(`${apiUrl}/lineups?fixture=${fixtureId}`, {
-            headers: { 'x-apisports-key': apiKey }
-        });
+        const response = await fetch(`${apiUrl}/lineups/${fixtureId}`);
         const data = await response.json();
 
         if (data.response.length === 0) {
